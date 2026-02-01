@@ -12,9 +12,10 @@ cd ~/nvim && ./install
 ## requirements
 
 - neovim 0.11+
-- gcc
-- nerd font
-- clang-format (optional)
+- gcc (treesitter parsers)
+- curl, tar, unzip (mason downloads)
+- nerd font (icons)
+- clang-format (optional, c++ formatting)
 
 ## plugins
 
