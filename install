@@ -3,18 +3,20 @@
 # install nvim config
 #
 
-set -e
+# get script directory (works even when called from different location)
+script_dir=$(cd "$(dirname "$0")" && pwd) || exit
 
 # symlink to ~/.config/nvim
 mkdir -p ~/.config
 if [[ -L ~/.config/nvim ]]; then
 	rm ~/.config/nvim
 elif [[ -d ~/.config/nvim ]]; then
-	echo 'backing up existing ~/.config/nvim to ~/.config/nvim.bak'
-	mv ~/.config/nvim ~/.config/nvim.bak
+	backup_name="nvim.bak.$(date +%Y%m%d%H%M%S)"
+	echo "backing up existing ~/.config/nvim to ~/.config/$backup_name"
+	mv ~/.config/nvim ~/.config/"$backup_name"
 fi
-ln -s "$PWD" ~/.config/nvim
-echo "symlinked $PWD -> ~/.config/nvim"
+ln -s "$script_dir" ~/.config/nvim
+echo "symlinked $script_dir -> ~/.config/nvim"
 
 # tree-sitter-cli (required for treesitter parsers)
 if ! command -v tree-sitter &>/dev/null; then
