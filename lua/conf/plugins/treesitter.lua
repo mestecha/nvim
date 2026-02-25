@@ -3,6 +3,11 @@ return {
 	build = ":TSUpdate",
 
 	config = function()
+		-- use clang on Windows for compiling parsers
+		if vim.fn.has("win32") == 1 then
+			require("nvim-treesitter.install").compilers = { "clang" }
+		end
+
 		-- new API: just install parsers, highlighting is built into neovim
 		require("nvim-treesitter").setup({})
 
