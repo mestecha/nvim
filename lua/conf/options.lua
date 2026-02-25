@@ -60,8 +60,8 @@ vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
 
 vim.opt.shortmess:append "c"
 
--- Windows shell override
+-- Windows shell override: prefer pwsh, fall back to powershell
 if vim.fn.has("win32") == 1 then
-  vim.o.shell = "pwsh"
+  vim.o.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
   vim.o.shellcmdflag = "-NoLogo -NoProfile -Command"
 end
