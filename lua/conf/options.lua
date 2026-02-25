@@ -59,3 +59,9 @@ vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
 
 vim.opt.shortmess:append "c"
+
+-- Windows shell override
+if vim.fn.has("win32") == 1 then
+  vim.o.shell = "pwsh"
+  vim.o.shellcmdflag = "-NoLogo -NoProfile -Command"
+end

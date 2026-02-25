@@ -65,6 +65,12 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv=gv", opts)
 keymap("x", "p", '"_dP', opts)
 
 -- Terminal --
+-- Open terminal in vertical split
+vim.keymap.set("n", "<leader>tt", ":vsplit | terminal<cr>i", { desc = "terminal" })
+
+-- Make :terminal open in a vertical split
+vim.cmd([[cabbrev <expr> terminal getcmdtype() == ":" && getcmdline() == "terminal" ? "vsplit \| terminal" : "terminal"]])
+
 -- Better terminal navigation
 keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
