@@ -68,8 +68,14 @@ keymap("x", "p", '"_dP', opts)
 -- Open terminal in vertical split
 vim.keymap.set("n", "<leader>tt", ":vsplit | terminal<cr>i", { desc = "terminal" })
 
--- Make :terminal open in a vertical split
-vim.cmd([[cabbrev <expr> terminal getcmdtype() == ":" && getcmdline() == "terminal" ? "vsplit \| terminal" : "terminal"]])
+-- Make :terminal always open in a vertical split
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    if vim.bo.buftype == "terminal" and vim.fn.winnr("$") == 1 then
+      vim.cmd("wincmd L")
+    end
+  end,
+})
 
 -- Better terminal navigation
 keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
