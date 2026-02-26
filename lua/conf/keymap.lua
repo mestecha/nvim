@@ -81,6 +81,12 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- Close buffer without closing window
+vim.keymap.set("n", "<leader>bx", function()
+  local buf = vim.api.nvim_get_current_buf()
+  vim.cmd("bprevious | bdelete " .. buf)
+end, { desc = "close current" })
+
 -- Toggle text wrap
 vim.keymap.set("n", "<leader>tw", function()
 	vim.wo.wrap = not vim.wo.wrap

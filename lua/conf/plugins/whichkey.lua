@@ -13,7 +13,6 @@ return {
       { "<Tab>", desc = "next buffer" },
       { "<S-Tab>", desc = "prev buffer" },
       { "<leader>bc", ":BufferLinePickClose<cr>", desc = "pick close" },
-      { "<leader>bx", ":bd<cr>", desc = "close current" },
       { "<leader>bl", ":BufferLineCloseRight<cr>", desc = "close right" },
       { "<leader>bh", ":BufferLineCloseLeft<cr>", desc = "close left" },
       { "<leader>bo", ":BufferLineCloseOthers<cr>", desc = "close others" },
