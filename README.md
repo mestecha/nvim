@@ -1,24 +1,32 @@
 # nvim
 
-minimal neovim config for c++ development.
+requires neovim `0.12` or later.
 
-## install
+## dependencies
 
+system packages:
 ```bash
-git clone git@github.com:mestecha/nvim.git ~/nvim
-cd ~/nvim && ./install
+sudo apt install git ripgrep fzf fd-find luarocks
 ```
 
-## requirements
+tree-sitter cli (needed to compile parsers):
+```bash
+npm install -g tree-sitter-cli
+```
 
-- neovim 0.11+
-- gcc (treesitter parsers)
-- curl, tar, unzip (mason downloads)
-- nerd font (icons)
-- clang-format (optional, c++ formatting)
+## setup
 
-## plugins
+open neovim and install language servers:
+```vim
+:MasonInstall pyright lua-language-server bash-language-server clangd rust-analyzer efm
+```
 
-lsp, treesitter, telescope, nvim-tree, bufferline, gitsigns, flash, trouble, conform, mini.surround, lualine, which-key, tokyonight.
+install formatters and linters:
+```vim
+:MasonInstall black flake8 stylua luacheck clang-format cpplint shellcheck shfmt
+```
 
-press `<space>` for keybinding menu.
+additional servers and tools are commented out in `init.lua` — uncomment and install as needed:
+```vim
+:MasonInstall typescript-language-server gopls prettier prettierd eslint_d fixjson gofumpt revive
+```
